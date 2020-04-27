@@ -24,24 +24,20 @@ const RightContent = (props) => (
 
 const DeliveryStatusCard = (props) => {
   return (
-    <View style={styles.wrapper}>
-      <Card>
-        <Card.Title
-          title="Card Title"
-          subtitle="Card Subtitle"
-          // left={LeftContent}
-          right={() =>
-            RightContent({
-              status: props.available ? "available" : "unavailable",
-            })
-          }
-        />
+    <Card elevation={5} style={styles.wrapper}>
+      <Card.Title
+        title={props.title}
+        right={() =>
+          RightContent({
+            status: props.available ? "available" : "unavailable",
+          })
+        }
+      />
 
-        <Card.Actions>
-          <Button>Go to Shopping Cart</Button>
-        </Card.Actions>
-      </Card>
-    </View>
+      <Card.Actions>
+        <Button>Go to Shopping Cart</Button>
+      </Card.Actions>
+    </Card>
   );
 };
 
@@ -50,8 +46,12 @@ export default DeliveryStatusCard;
 const styles = StyleSheet.create({
   wrapper: {
     margin: 12,
+    borderRadius: 12,
   },
   rightContent: {
+    display: "flex",
+    backgroundColor: "red",
+    flexDirection: "column",
     margin: 12,
   },
 });

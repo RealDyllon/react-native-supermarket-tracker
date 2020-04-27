@@ -6,7 +6,7 @@
 1. expo-cli
 1. Android Studio and/or XCode
 
-## Available Scripts
+## Scripts
 
 ### `npm start`
 
@@ -25,9 +25,3 @@ or
 ### `yarn start --reset-cache`
 
 ---
-
-### `npm run eject`
-
-This will start the process of "ejecting" from Create React Native App's build scripts. You'll be asked a couple of questions about how you'd like to build your project.
-
-Warning: Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an Xcode and/or Android Studio environment set up.

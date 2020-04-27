@@ -12,9 +12,9 @@ const Main = () => {
         <Appbar.Action icon="dots-vertical" />
       </Appbar.Header>
       <View>
-        <DeliveryStatusCard name="Supermarket 1" available={true} />
-        <DeliveryStatusCard name="Supermarket 1" available={true} />
-        <DeliveryStatusCard name="Supermarket 1" available={true} />
+        <DeliveryStatusCard title="Supermarket 1" available={true} />
+        <DeliveryStatusCard title="Supermarket 2" available={true} />
+        <DeliveryStatusCard title="Supermarket 3" available={true} />
       </View>
     </>
   );
