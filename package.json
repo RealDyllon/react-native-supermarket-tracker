@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "delay": "^4.3.0",
     "expo": "~37.0.3",
     "expo-web-browser": "~8.2.0",
     "react": "~16.9.0",

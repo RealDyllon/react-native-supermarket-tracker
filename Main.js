@@ -12,6 +12,8 @@ import {
 import DeliveryStatusCard from "./components/DeliveryStatusCard";
 import { useColorScheme } from "react-native-appearance";
 
+const delay = require("delay");
+
 const stores = {
   ntuc: {
     name: "NTUC FairPrice",
@@ -40,9 +42,18 @@ const Main = () => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
 
+  // global
+  const [isItemCardsVisible, setItemCardsVisible] = useState(false);
+  const [isPostCodeInvalid, setPostCodeInvalid] = useState(false);
+
+  // input
   const [postCodeInput, setPostCodeInput] = useState("");
   const [isRememberPostCode, setRememberPostCode] = useState(false);
 
+  // form submission
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  // ntuc
   const [isNtucLoading, setNtucLoading] = useState(false);
   const [ntucStoreRes, setNtucStoreRes] = useState(null); // eslint-disable-line no-unused-vars
   const [ntucStoreErr, setNtucStoreErr] = useState(null);
@@ -91,17 +102,17 @@ const Main = () => {
       const rememberPostCodePref = isRememberPostCode;
 
       if (rememberPostCodePref) {
-        localStorage.setItem("postCode", postCode);
-        localStorage.setItem("postCodeRememberPref", 1); //true
+        // localStorage.setItem("postCode", postCode);
+        // localStorage.setItem("postCodeRememberPref", 1); //true
       } else {
-        localStorage.removeItem("postCode");
-        localStorage.removeItem("postCodeRememberPref"); //true
+        // localStorage.removeItem("postCode");
+        // localStorage.removeItem("postCodeRememberPref"); //true
       }
 
       reqNtuc(postCode);
-      reqShengShiong(postCode);
-      reqColdStorage(postCode);
-      reqGiant(postCode);
+      // reqShengShiong(postCode);
+      // reqColdStorage(postCode);
+      // reqGiant(postCode);
     } else {
       console.log("POSTCODE INVALID!!!");
       setPostCodeInvalid(true);
@@ -201,7 +212,9 @@ const Main = () => {
                 marginHorizontal: 12,
               }}
             >
-              <Checkbox.Android status={isRememberPostCode ? "checked" : "unchecked"} />
+              <Checkbox.Android
+                status={isRememberPostCode ? "checked" : "unchecked"}
+              />
               <Text>Remember my postal code</Text>
             </View>
           </TouchableRipple>
@@ -209,15 +222,17 @@ const Main = () => {
           <DeliveryStatusCard
             title={stores.ntuc.name}
             cartUrl={stores.ntuc.url}
-            loading={false}
+            loading={isNtucLoading}
             available={true}
           />
+
           <DeliveryStatusCard
             title={stores.coldStorage.name}
             cartUrl={stores.coldStorage.url}
             loading={false}
             available={false}
           />
+
           <DeliveryStatusCard
             title={stores.giant.name}
             cartUrl={stores.giant.url}

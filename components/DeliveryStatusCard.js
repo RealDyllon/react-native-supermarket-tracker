@@ -8,6 +8,7 @@ import {
   Title,
   Paragraph,
   Surface,
+  ActivityIndicator,
 } from "react-native-paper";
 import { Ionicons, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
@@ -34,19 +35,23 @@ const StatusIcon = (props) => {
         alignItems: "center",
       }}
     >
-      <FontAwesome5
-        name={
-          props.error
-            ? "exclamation-triangle"
-            : props.available
-            ? "check"
-            : "times"
-        }
-        color={
-          props.error ? "#e14337" : props.available ? "#00C851" : "#f08e38"
-        }
-        size={props.error ? 42 : props.available ? 48 : 58}
-      />
+      {props.loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FontAwesome5
+          name={
+            props.error
+              ? "exclamation-triangle"
+              : props.available
+              ? "check"
+              : "times"
+          }
+          color={
+            props.error ? "#e14337" : props.available ? "#00C851" : "#f08e38"
+          }
+          size={props.error ? 42 : props.available ? 48 : 58}
+        />
+      )}
     </View>
   );
 };
@@ -68,7 +73,11 @@ const DeliveryStatusCard = (props) => {
           </Paragraph>
         </View>
         <View style={styles.rightContent}>
-          <StatusIcon available={props.available} error={props.error} />
+          <StatusIcon
+            loading={props.loading}
+            available={props.available}
+            error={props.error}
+          />
         </View>
       </Card.Content>
 
